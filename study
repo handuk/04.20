@@ -1,0 +1,491 @@
+package com.array1;
+import java.util.*;
+public class home1 {
+
+	public static void main(String[] args) {
+		//1. 5개의 정수를 입력받아 입력받은 수를 출력하고 입력받은 수중
+		//   가장 큰수와 적은수를 출력
+		
+		Scanner sc = new Scanner(System.in);
+		int max=0,min = 0;
+		int[] num = new int[5];
+		
+		System.out.print("다섯개의 정수를 입력하시오 : ");
+		for(int i =0;i<num.length;i++)
+			num[i] = sc.nextInt();
+		
+		min = num[0];
+		for(int i =0;i<num.length;i++){
+			for(int j =i+1;j<num.length;j++){
+				if(num[i]>num[j]){
+					if(max<num[i])
+					max = num[i];
+					else if(min>num[j])
+						min = num[j];
+				}
+				else if(num[i]<num[j]){
+					if(min>num[i])
+					min = num[i];
+				}		
+			}
+			
+		}
+		
+		System.out.printf("입력받은수중 가장큰값 %d 가장작은값 %d 입니다.",max,min);
+		
+		
+		
+		
+		
+	}
+
+}
+-------------------------------------------------------
+package com.array1;
+import java.io.*;
+import java.util.*;
+public class home2 {
+
+	public static void main(String[] args) throws IOException {
+		//2. 1~10사이의 난수를 발생시켜 발생시킨 난수를 3번안에 알아 맞추는 게임
+		//   (3번안에 알아맞추지 못하면 발생된 난수를 출력)
+		
+		//			System.out.print("계속할래? [Y/N]");
+		//put = (char)System.in.read();
+
+		//if(put!='y' && put!='Y'){
+		//break;
+		
+		Scanner sc = new Scanner(System.in);
+		Random rd = new Random();
+		int n,cho,count=0;
+		char put;
+		
+		while(true){
+		
+		
+		n = rd.nextInt(10)+1;
+		//System.out.println(n);
+		for(int i=0;i<3;i++){
+			do{
+		System.out.print("1~10까지의 숫자를맞춰보세요 : ");
+		cho = sc.nextInt();
+			}while(cho<=0||cho>10);
+
+		if(n==cho){
+		System.out.println("정답입니다~");
+		System.out.println("정답은 "+n+" 입니다.");
+		break;
+		}
+		else if(n!=cho)
+			System.out.println("틀렸습니다.");
+			count++;
+		if(count==3){
+			System.out.println("세번의기회가 끝났습니다.");
+			System.out.println("정답은 "+n+" 입니다.");
+			break;		
+		}
+		}//end..for
+		
+		System.out.println("다시하시겠습니까? [Y/N]");
+		put = (char)System.in.read();
+		if(put!='y' && put!='Y')
+			break;
+		System.in.skip(2);//엔터값의 아스키값을 삭제해주는과정.
+		}
+		
+	}
+
+}
+------------------------------------------
+
+package com.array1;
+import java.util.*;
+import java.io.*;
+public class home3 {
+
+	public static void main(String[] args) throws IOException{
+		//3. 1~3사이의 난수를 발생시켜 가위,바위,보 게임 프로그램 작성
+		//  1:가위, 2:바위, 3:보
+
+		//  1:가위, 2:바위, 3:보 ? 2
+		//  컴퓨터가 이겼습니다(난수가 3인경우)
+		Scanner sc = new Scanner(System.in);
+		Random rd = new Random();
+		int n,c;
+		String str="",n1="",c1="";
+		char put;
+		
+		while(true){
+			n = rd.nextInt(3)+1;
+			
+			System.out.println("1:가위 2:바위 3:보 가위바위보게임 입력 : ");
+			c = sc.nextInt();
+			switch(c){
+			case 1:
+				c1="가위";
+				break;
+			case 2:
+				c1="바위";
+				break;
+			case 3:
+				c1="보";
+				break;
+				default:
+					break;
+			}
+			if(n==1){
+				n1 = "가위";
+				switch (c) {
+				case 1:
+					str = "비겼습니다.";
+					break;
+				case 2:
+					str = "이겼습니다.";
+					break;
+				case 3:
+					str = "졌습니다.";
+					break;
+
+				default:
+					break;
+				}
+			}
+			else if(n==2){
+				n1 = "바위";
+				switch (c) {
+				case 1:
+					str = "졌습니다.";
+					break;
+				case 2:
+					str = "비겼습니다.";
+					break;
+				case 3:
+					str = "이겼습니다.";
+					break;
+
+				default:
+					break;
+				}
+			}
+			else{
+				n1 ="보";
+				switch (c) {
+				case 1:
+					str = "이겼습니다.";
+					break;
+				case 2:
+					str = "졌습니다.";
+					break;
+				case 3:
+					str = "비겼습니다.";
+					break;
+
+				default:
+					break;
+				}
+			}
+			
+			System.out.println("컴퓨터 : "+ n1 + " 사용자 : " + c1 + " "+str);
+			
+			System.out.println("다시하시겠습니까?[Y/N] : ");
+			put = (char)System.in.read();
+			
+			if(put!='y'&&put!='Y')
+				break;
+		}
+		
+	}
+
+}
+------------------------------------
+
+package com.array1;
+
+import java.util.Scanner;
+
+public class Test1 {
+
+	public static void main(String[] args) {
+			
+		//Selection Sort
+		
+		//int[] num = new int[5];
+		//[50][43][36][17][9]
+		// 0   1   2   3   4
+		
+		//0-1,0-2,0-3,0-4,0-5
+		//1-2,1-3,1-4
+		//이런식으로 순차비교를해서 왼쪽부터 작은수정렬이된다.
+		
+		Scanner sc = new Scanner(System.in);
+		
+		int num[] = new int[5];
+		
+		int i,j,temp;
+		
+		System.out.print("다섯개의 숫자 입력 : ");
+		
+		for(i=0;i<num.length;i++){
+			num[i] = sc.nextInt();
+		}
+		System.out.print("Source Data : ");
+		for(i=0;i<num.length;i++)
+			System.out.printf("%4d",num[i]);
+		
+		System.out.println();
+		
+		//연산작업 Selection sort
+		for(i=0;i<num.length-1;i++){
+			for(j=i+1;j<num.length;j++){
+				if(num[i]>num[j]){
+					temp = num[i];
+					num[i] = num[j];
+					num[j] = temp;
+					}
+				
+				
+			}
+				
+		}
+		System.out.print("Source Data : ");
+		//확장포문 연속된공간에 연속된값을가져올때쓰는거.
+		for(int su : num)
+			System.out.printf("%4d",su);
+		System.out.println();
+		
+		
+		
+		
+	}
+
+}
+-----------------------------
+
+package com.array1;
+
+import java.util.Scanner;
+
+public class Test2 {
+
+	public static void main(String[] args) {
+
+		
+		
+		//10명이내의 이름과 점수를 입력받아
+		//점수가 높은사람에서 낮은사람 순으로 정렬(내림차순)
+		
+		//인원수를 물어보고 배열수를지정함.
+		
+		Scanner sc = new Scanner(System.in);
+		String[] name;
+		int[] score;
+		int i,j,inwon,tmp=0;
+		String tmp1="";
+		
+		do{
+		System.out.print("몇명 입력할거니? : ");//3
+		inwon = sc.nextInt();
+		}while(inwon<1||inwon>10);
+		
+		//배열 메모리 할당(객체 생성)
+		name = new String[inwon];
+		score = new int[inwon];
+		
+		for(i=0;i<inwon;i++){
+			System.out.print((i+1) + "이름 ? : ");
+			name[i] = sc.next();
+			System.out.print("점수 ? : ");
+			score[i] = sc.nextInt();
+		}
+
+		for(i=0;i<inwon;i++){
+			for(j=i+1;j<inwon;j++){
+				if(score[i]<score[j]){
+					tmp = score[j];
+					score[j] = score[i];
+					score[i] = tmp;
+					tmp1 = name[j];
+					name[j] = name[i];
+					name[i] = tmp1;
+				}
+			}
+				
+		}
+
+		//출력
+		for(i=0;i<inwon;i++)
+			System.out.printf("%10s %4d\n", name[i],score[i]);
+		
+		
+		
+		
+		
+		
+		
+	}
+
+}
+----------------------------
+
+package com.array1;
+
+import java.util.Random;
+
+public class Test3 {
+
+	public static void main(String[] args) {
+			//1~45까지의 수중 6개의 난수를 발생시켜 크기순으로 정렬(오름차순)
+		
+		Random rd = new Random();
+		
+		int[] num = new int[6];
+		int i,j,n,tmp;
+		
+		//6개의 난수를발생
+		n = 0;
+		
+		while(n<6){
+			
+			num[n] = rd.nextInt(45) + 1;
+			for(i=0;i<n;i++){
+				if(num[i]==num[n]){
+					n--;
+					break;
+				}
+			}
+			n++;
+						
+		}
+		for(int su : num)
+			System.out.printf("%4d",su);
+		System.out.println();
+		
+		for(i=0;i<num.length-1;i++){
+			for(j=i+1;j<num.length;j++){
+				if(num[i]>num[j]){
+					tmp = num[i];
+					num[i] = num[j];
+					num[j] = tmp;
+					}
+				
+				
+			}
+				
+		}
+		
+		//출력
+		
+		for(int su : num)
+			System.out.printf("%4d",su);
+		System.out.println();
+		
+	}
+
+}
+------------------------
+
+package com.array1;
+
+import java.util.Scanner;
+
+public class Test4 {
+
+	public static void main(String[] args) {
+			//10명이내의 이름과 점수를 입력받아
+			//석차를 구하시오
+		
+		
+		Scanner sc = new Scanner(System.in);
+		String[] name;
+		int[] score;
+		int i,j,inwon;
+		int[] rank;
+		
+		do{
+		System.out.print("몇명 입력할거니? : ");//3
+		inwon = sc.nextInt();
+		}while(inwon<1||inwon>10);
+		
+		//배열 메모리 할당(객체 생성)
+		name = new String[inwon];
+		score = new int[inwon];
+		rank = new int[inwon];
+		for(i=0;i<inwon;i++){
+			System.out.print((i+1) + "이름 ? : ");
+			name[i] = sc.next();
+			System.out.print("점수 ? : ");
+			score[i] = sc.nextInt();
+		}
+		
+		for(i=0;i<inwon;i++){
+			rank[i] = 1;
+		}
+		
+		
+		for(i=0;i<inwon-1;i++){
+			for(j=i+1;j<inwon;j++){
+
+				//System.out.println(rank[j]);
+				if(score[i]>score[j]){
+					rank[j]=rank[j] + 1;
+				//System.out.println(rank[j]);
+				}
+				else if(score[i]<score[j]){
+					rank[i]=rank[i] + 1;
+				}
+			}
+		}//end..for
+		
+		for(i=0;i<inwon;i++)
+			System.out.printf("%2s 는 %4d 점 %4d 등\n",name[i],score[i],rank[i]);
+		
+		sc.close();
+		
+	}
+
+}
+--------------------------------
+
+package com.array1;
+
+public class Test5 {
+	public static void main(String[] args){
+		
+		//Bubble sort
+		
+		int[] num = {50,20,100,94,30};
+		int i,j,tmp;
+		
+		System.out.println("Source Data : ");
+		
+		for(int su : num)
+			System.out.printf("%4d",su);
+		System.out.println();
+		
+		//bubble sort
+		
+		for(i=1;i<num.length;i++){
+			for(j=0;j<num.length-i;j++){
+				
+				if(num[j]>num[j+1]){
+					tmp = num[j];
+					num[j] = num[j+1];
+					num[j+1] = tmp;
+				}
+				
+			}
+		}
+		
+		
+		
+		System.out.println("Sorted Data : ");
+		
+		for(int su : num)
+			System.out.printf("%4d",su);
+		System.out.println();
+		
+	}
+}
+
+----------------------------------
